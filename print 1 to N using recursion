@@ -1,0 +1,21 @@
+public class PrintNumbersRecursively {
+    public static void printNumbers(int current, int n) {
+        if (current > n) {  
+            return;
+        }
+        System.out.println(current);
+        printNumbers(current + 1, n);  
+    }
+
+    public static void main(String[] args) {
+        int N = 6;  
+        printNumbers(1, N);  
+    }
+}
+
+1
+2
+3
+4
+5
+6

@@ -1,0 +1,32 @@
+import java.util.*;
+public class Subset {
+        public static void generateSubsets(int[] nums) {
+        int n = nums.length;
+        int totalSubsets = 1 << n; // 2^n
+        for (int i = 0; i < totalSubsets; i++) {
+            List<Integer> subset = new ArrayList<>();
+            for (int j = 0; j < n; j++) {
+                if ((i & (1 << j)) != 0) {
+                    subset.add(nums[j]);
+                }
+            }         
+System.out.println(subset);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3}; 
+        generateSubsets(nums); 
+    }
+}
+
+Input {1, 2, 3}
+
+[]
+[1]
+[2]
+[1, 2]
+[3]
+[1, 3]
+[2, 3]
+[1, 2, 3]

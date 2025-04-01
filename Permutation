@@ -1,0 +1,32 @@
+public class Permutation {
+    static void permute(String str, String answer) {
+        if (str.length() == 0) {
+            System.out.println(answer);
+            return;
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i); 
+            String left_substr = str.substring(0, i);
+            String right_substr = str.substring(i + 1);
+            String rest = left_substr + right_substr; 
+            permute(rest, answer + ch);
+        }
+    }
+
+    public static void main(String[] args) {
+        String str = "ABC"; 
+        System.out.println("All permutations of " + str + " are:");
+        permute(str, "");
+    }
+}
+
+
+All permutations of ABC are:
+ABC
+ACB
+BAC
+BCA
+CAB
+CBA
+

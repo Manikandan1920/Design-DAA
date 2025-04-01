@@ -1,0 +1,19 @@
+public class PrintNameRecursively {
+    public static void printName(int n) {
+        if (n <= 0) {  
+            return;
+        }
+        System.out.println("Hari");
+        printName(n - 1);  
+    }
+
+    public static void main(String[] args) {
+        int N = 5;  
+        printName(N);
+    }
+}
+Hari
+Hari
+Hari
+Hari
+Hari
