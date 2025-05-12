@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class PrisonersDilemma {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Prisoner's Dilemma Game!");
+        System.out.println("Each player can choose to either 'Cooperate' or 'Defect'.");
+        System.out.println("Payoff Matrix:");
+        System.out.println("If both cooperate: (3, 3)");
+        System.out.println("If one defects and the other cooperates: (0, 5) or (5, 0)");
+        System.out.println("If both defect: (1, 1)");
+        
+        // Player choices
+        System.out.print("Player 1, enter your choice (C for Cooperate, D for Defect): ");
+        char player1Choice = scanner.next().toUpperCase().charAt(0);
+        
+        System.out.print("Player 2, enter your choice (C for Cooperate, D for Defect): ");
+        char player2Choice = scanner.next().toUpperCase().charAt(0);
+
+        // Determine outcomes
+        int player1Payoff = 0;
+        int player2Payoff = 0;
+
+        if (player1Choice == 'C' && player2Choice == 'C') {
+            player1Payoff = 3;
+            player2Payoff = 3;
+        } else if (player1Choice == 'C' && player2Choice == 'D') {
+            player1Payoff = 0;
+            player2Payoff = 5;
+        } else if (player1Choice == 'D' && player2Choice == 'C') {
+            player1Payoff = 5;
+            player2Payoff = 0;
+        } else if (player1Choice == 'D' && player2Choice == 'D') {
+            player1Payoff = 1;
+            player2Payoff = 1;
+        } else {
+            System.out.println("Invalid input. Please enter 'C' or 'D'.");
+            scanner.close();
+            return;
+        }
+
+        // Display results
+        System.out.println("Results:");
+        System.out.println("Player 1's choice: " + (player1Choice == 'C' ? "Cooperate" : "Defect"));
+        System.out.println("Player 2's choice: " + (player2Choice == 'C' ? "Cooperate" : "Defect"));
+        System.out.println("Player 1's payoff: " + player1Payoff);
+        System.out.println("Player 2's payoff: " + player2Payoff);
+
+        scanner.close();
+    }
+}
+
+Welcome to the Prisoner's Dilemma Game!
+Each player can choose to either 'Cooperate' or 'Defect'.
+Payoff Matrix:
+If both cooperate: (3, 3)
+If one defects and the other cooperates: (0, 5) or (5, 0)
+If both defect: (1, 1)
+Player 1, enter your choice (C for Cooperate, D for Defect): C
+Player 2, enter your choice (C for Cooperate, D for Defect): D
+Results:
+Player 1's choice: Cooperate
+Player 2's choice: Defect
+Player 1's payoff: 0
+Player 2's payoff: 5
