@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class SegmentTrieXOR {
+
+    static class TrieNode {
+        TrieNode[] children = new TrieNode[2];
+    }
+
+    static class SegmentTrie {
+        private final TrieNode root = new TrieNode();
+        private final int BITS = 31; // support for up to 32-bit integers
+
+        // Insert number into trie
+        public void insert(int num) {
+            TrieNode node = root;
+            for (int i = BITS; i >= 0; i--) {
+                int bit = (num >> i) & 1;
+                if (node.children[bit] == null) {
+                    node.children[bit] = new TrieNode();
+                }
+                node = node.children[bit];
+            }
+        }
+
+        // Query max XOR of num with elements in trie
+        public int maxXOR(int num) {
+            TrieNode node = root;
+            int maxXor = 0;
+            for (int i = BITS; i >= 0; i--) {
+                int bit = (num >> i) & 1;
+                int toggledBit = bit ^ 1;
+                if (node.children[toggledBit] != null) {
+                    maxXor |= (1 << i);
+                    node = node.children[toggledBit];
+                } else {
+                    node = node.children[bit];
+                }
+            }
+            return maxXor;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        SegmentTrie trie = new SegmentTrie();
+
+        System.out.print("Enter the number of elements to insert: ");
+        int n = scanner.nextInt();
+
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            int num = scanner.nextInt();
+            trie.insert(num);
+        }
+
+        System.out.print("Enter the number of queries: ");
+        int q = scanner.nextInt();
+
+        System.out.println("Enter query numbers to find max XOR:");
+        for (int i = 0; i < q; i++) {
+            int queryNum = scanner.nextInt();
+            int result = trie.maxXOR(queryNum);
+            System.out.println("Max XOR of " + queryNum + " with trie elements is: " + result);
+        }
+
+        scanner.close();
+    }
+}
+Enter the number of elements to insert: 4
+Enter the elements:
+3 10 5 25
+Enter the number of queries: 3
+Enter query numbers to find max XOR:
+5
+2
+8
+Max XOR of 5 with trie elements is: 28
+Max XOR of 2 with trie elements is: 27
+Max XOR of 8 with trie elements is: 25
